@@ -12,21 +12,21 @@ public class users {
     private String email;
     private String password;
     private String address;
-    private Integer user_type_id;
+    private String role;
     private String profile_picture;
     private String status;
 
     public users() {
     }
 
-    public users(String first_name, String last_name, String email, String password, String address, Integer user_type_id,
+    public users(String first_name, String last_name, String email, String password, String address, String role,
             String profile_picture, String status) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
         this.password = password;
         this.address = address;
-        this.user_type_id = user_type_id;
+        this.role = role;
         this.profile_picture = profile_picture;
         this.status = status;
     }
@@ -79,12 +79,12 @@ public class users {
        this.address = address;
     }
 
-    public Integer getUser_type_id() {
-        return this.user_type_id;
+    public Integer getRole() {
+        return this.role;
     }
 
-    public void setUser_type_id(Integer user_type_id){
-       this.user_type_id = user_type_id;
+    public void setRole(String role){
+       this.role = role;
     }
 
     public String getProfile_picture() {

@@ -55,7 +55,7 @@ public class users_controller {
         try {
             users _user = usersRepository
                     .save(new users(user.getFirst_name(), user.getLast_name(), user.getEmail(), user.getPassword(),
-                            user.getAddress(), user.getUser_type_id(), user.getProfile_picture(), user.getStatus()));
+                            user.getAddress(), user.getRole(), user.getProfile_picture(), user.getStatus()));
             return new ResponseEntity<>(_user, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
@@ -73,7 +73,7 @@ public class users_controller {
             _user.setEmail(user.getEmail());
             _user.setPassword(user.getPassword());
             _user.setAddress(user.getAddress());
-            _user.setUser_type_id(user.getUser_type_id());
+            _user.setUser_type_id(user.getRole());
             _user.setProfile_picture(user.getProfile_picture());
             _user.setStatus(user.getStatus());
             return new ResponseEntity<>(usersRepository.save(_user), HttpStatus.OK);
@@ -82,6 +82,7 @@ public class users_controller {
         }
     }
 
+    
     @DeleteMapping("{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") long id) {
         try {
@@ -92,6 +93,7 @@ public class users_controller {
         }
     }
 
+    //@/api/user/sign-up
     @PostMapping("/sign-up")
     public ResponseEntity<users> signUp(@RequestBody users user) {
         try {
@@ -102,7 +104,8 @@ public class users_controller {
             return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
         }
     }
-
+    
+    //@/api/user/login
     @PostMapping("/login")
     public ResponseEntity<users> login(@RequestBody users user) {
         users existingUser = usersRepository.findByEmail(user.getEmail());
