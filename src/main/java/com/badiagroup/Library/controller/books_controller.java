@@ -54,7 +54,11 @@ public class books_controller {
             books existingBook = existingBookOptional.get();
             existingBook.setTitle(updatedBook.getTitle()); // Update specific fields
             existingBook.setAuthor(updatedBook.getAuthor());
-            // Update other fields as needed
+            existingBook.setRelease_date(updatedBook.getRelease_date());
+            existingBook.setGenre(updatedBook.getGenre());
+            existingBook.setLanguage(updatedBook.getLanguage());
+            existingBook.setQty(updatedBook.getQty());
+            existingBook.setStatus(updatedBook.getStatus());
             books savedBook = booksRepository.save(existingBook);
             return new ResponseEntity<>(savedBook, HttpStatus.OK);
         } else {
