@@ -3,10 +3,13 @@ package com.badiagroup.Library.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "Users")
+
 public class users {
-    private @Id @GeneratedValue long id;
+    private @Id @GeneratedValue long user_id;
     private String first_name;
     private String last_name;
     private String email;
@@ -32,11 +35,11 @@ public class users {
     }
 
     public long getId() {
-        return this.id;
+        return this.user_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(long user_id) {
+        this.user_id = user_id;
     }
 
     public String getFirst_name() {
@@ -79,7 +82,7 @@ public class users {
        this.address = address;
     }
 
-    public Integer getRole() {
+    public String getRole() {
         return this.role;
     }
 

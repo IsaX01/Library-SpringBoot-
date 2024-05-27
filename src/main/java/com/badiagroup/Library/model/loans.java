@@ -3,13 +3,16 @@ package com.badiagroup.Library.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.util.Date;
 
 @Entity
+@Table(name = "Loans")
+
 public class loans {
 
-    private @Id @GeneratedValue long id;
+    private @Id @GeneratedValue long loan_id;
     private Integer user_id;
     private Integer book_id;
     private Date load_date;
@@ -30,11 +33,11 @@ public class loans {
     }
 
     public long getId() {
-        return this.id;
+        return this.loan_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(long loan_id) {
+        this.loan_id = loan_id;
     }
 
     public Integer getUser_id() {

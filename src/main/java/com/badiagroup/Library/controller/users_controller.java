@@ -3,6 +3,8 @@ package com.badiagroup.Library.controller;
 import com.badiagroup.Library.model.users;
 import com.badiagroup.Library.repository.users_repository;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*") 
 @RestController
 @RequestMapping("/api/user")
 public class users_controller {
+
+
 
     @Autowired
     users_repository usersRepository;
@@ -73,7 +78,7 @@ public class users_controller {
             _user.setEmail(user.getEmail());
             _user.setPassword(user.getPassword());
             _user.setAddress(user.getAddress());
-            _user.setUser_type_id(user.getRole());
+            _user.setRole(user.getRole());
             _user.setProfile_picture(user.getProfile_picture());
             _user.setStatus(user.getStatus());
             return new ResponseEntity<>(usersRepository.save(_user), HttpStatus.OK);
@@ -114,5 +119,11 @@ public class users_controller {
         } else {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
+    }
+
+     @PostMapping("/logout")
+    public ResponseEntity<Void> logout(HttpServletRequest request) {
+        request.getSession().invalidate(); 
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); 
     }
 }
